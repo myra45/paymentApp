@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link href="./output.css" rel="stylesheet" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+          font-family: 'Poppins', sans-serif;
+        }
+        
+        .login-container {
+          background: linear-gradient(135deg, rgba(237, 242, 244, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+        
+        .login-card {
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+          border-radius: 20px;
+          overflow: hidden;
+        }
+        
+        .input-group {
+          position: relative;
+          margin-bottom: 1.5rem;
+        }
+        
+        .input-group input {
+          transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+          border-color: #d10000;
+          box-shadow: 0 0 0 3px rgba(209, 0, 0, 0.1);
+        }
+        
+        .input-group i {
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #d10000;
+        }
+        
+        .input-group input {
+          padding-left: 45px;
+        }
+        
+        .btn-login {
+          background: linear-gradient(135deg, #d10000 0%, #8b0000 100%);
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(209, 0, 0, 0.3);
+        }
+        
+        .btn-login:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(209, 0, 0, 0.4);
+        }
+        
+        .forgot-link {
+          transition: color 0.3s ease;
+        }
+        
+        .forgot-link:hover {
+          color: #d10000;
+        }
+
+        .floating-label {
+          position: absolute;
+          top: 50%;
+          left: 40px;
+          transform: translateY(-50%);
+          color: #9ca3af;
+          pointer-events: none;
+          transition: all 0.3s ease;
+        }
+        
+        input:focus + .floating-label,
+        input:not(:placeholder-shown) + .floating-label {
+          top: -10px;
+          left: 10px;
+          font-size: 0.75rem;
+          background: white;
+          padding: 0 5px;
+          color: #d10000;
+        }
+      </style>
+  </head>
+
+  <body class="bg-[#EDF2F4] min-h-screen">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition">
+        <div class="w-12 h-12 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Navbar Section-->
+    <header class="sticky shadow-md top-0 z-50 bg-white">
+      <div class="container mx-auto px-4 md:px-2 py-4">
+        <div class="flex items-center justify-between overflow-hidden gap-4">
+            <!-- Navbar Section Logo -->
+            <div class="flex items-center">
+                <div class="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                <span class="text-white font-bold text-xl">$</span>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-700">
+                BayarSekolah
+                </h1>
+            </div>
+            <!-- Navbar Section Button -->
+            <div class="space-x-4 hidden md:flex md:px-12">
+                <a href="#howItWorksSection" class="px-4 py-2 border text-red-600 rounded-full text-sm hover:bg-red-900  hover:text-white transition">
+                    <i class="fas fa-book mr-2"></i> Panduan
+                </a>
+                <a href="index.html" class="px-4 py-2 border border-red-600 text-red-600 rounded-full text-sm hover:bg-red-900 hover:text-white transition">
+                    Kembali ke Beranda
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="text-gray-700 focus:outline-none md:hidden" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+      </div>
+    </header>   
+
+    <!-- Sidebar -->
+    <div id="mobileSidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden">
+        <div class="p-5 border-b border-gray-300 flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="bg-red-600 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-white font-bold text-lg">$</span>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-700">
+                    BayarSekolah
+                </h1>
+            </div>
+        </div>
+        <ul class="flex flex-col gap-4 p-5 space-y-2 text-center pb-2">
+            <a href="#featureSection" class="hover:text-red-600 transition">Keunggulan</a>
+            <a href="#howItWorksSection" class="hover:text-red-600 transition">Cara Kerja</a>
+            <a href="#faqSection" class="hover:text-red-600 transition">FAQ</a>
+        </ul>
+        <div class="flex flex-col gap-4 p-5 space-y-2 text-center">
+            <a href="#howItWorksSection" class="mx-8 px-2 py-2 border border-red-600 text-red-600 rounded-full text-sm hover:bg-red-700 hover:text-white transition">
+                <i class="fas fa-book mr-2"></i> Panduan
+            </a>
+            <a href="index.html" class="mx-8 px-2 py-2 border border-red-600 text-red-600 rounded-full text-sm hover:bg-red-700 hover:text-white transition">
+                Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-30 hidden z-40 md:hidden"></div>
+
+    <!-- Login Section -->
+    <section class="py-16 md:py-24 px-4 flex items-center justify-center min-h-[80vh]">
+      <div class="container mx-auto max-w-3xl">
+        <div class="login-card bg-white flex flex-col md:flex-row rounded-xl overflow-hidden shadow-xl" data-aos="fade-up">
+          <!-- Login Form -->
+          <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+            <div class="text-center mb-8">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Masuk ke Akun Anda</h2>
+              <p class="text-gray-600">Gunakan NIPD dan password untuk mengakses dashboard pembayaran</p>
+            </div>
+            
+            <form class="space-y-6">
+              <!-- Username Input -->
+              <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input 
+                  type="text" 
+                  placeholder=" " 
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                <label class="floating-label">NIPD / Email</label>
+              </div>
+              
+              <!-- Password Input -->
+              <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input 
+                  type="password" 
+                  placeholder=" " 
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                <label class="floating-label">Password</label>
+              </div>
+              
+              <!-- Remember & Forgot -->
+              <div class="text-end py-4">
+                <a href="#" class="text-sm forgot-link text-red-600 hover:text-red-800">Lupa password?</a>
+              </div>
+              
+              <!-- Login Button -->
+              <button type="submit" class="btn-login w-full py-3 px-4 text-white font-medium rounded-lg">
+                Masuk Sekarang
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#2B2D42] text-gray-300 py-12">
+        <div class="container mx-auto px-4 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company Info -->
+            <div>
+            <div class="flex items-center mb-4">
+                <div class="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                <span class="text-white font-bold text-xl">$</span>
+                </div>
+                <h3 class="text-white text-xl font-bold">BayarSekolah</h3>
+            </div>
+            <p class="mb-4">Solusi pembayaran sekolah digital terintegrasi untuk Indonesia modern.</p>
+            </div>
+            
+            <!-- About -->
+            <div>
+            <h4 class="text-white text-lg font-semibold mb-4">Tentang Aplikasi</h4>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:text-white transition">Keunggulan</a></li>
+                <li><a href="#" class="hover:text-white transition">Cara Kerja</a></li>
+                <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+            </ul>
+            </div>
+            
+            <!-- Policies -->
+            <div>
+            <h4 class="text-white text-lg font-semibold mb-4">Kebijakan</h4>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:text-white transition">Kebijakan Privasi</a></li>
+                <li><a href="#" class="hover:text-white transition">Syarat & Ketentuan</a></li>
+            </ul>
+            </div>
+            
+            <!-- Contact -->
+            <div>
+            <h4 class="text-white text-lg font-semibold mb-4">Kontak</h4>
+            <ul class="space-y-2">
+                <li><a href="#" class="hover:text-white transition">Bantuan</a></li>
+                <li><a href="#" class="hover:text-white transition">Hubungi Kami</a></li>
+                <li><a href="#" class="hover:text-white transition">Dokumentasi</a></li>
+            </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+            <p>© 2025 BayarSekolah. All rights reserved.</p>
+        </div>
+        </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        // Floating label effect
+        document.querySelectorAll('input').forEach(input => {
+          input.addEventListener('focus', function() {
+            this.nextElementSibling.classList.add('active');
+          });
+          
+          input.addEventListener('blur', function() {
+            if(this.value === '') {
+              this.nextElementSibling.classList.remove('active');
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
